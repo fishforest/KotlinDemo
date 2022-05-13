@@ -1,7 +1,7 @@
 package com.fish.kotlindemo.varclass
 
 
-fun main(args:Array<String>) {
+fun main(args: Array<String>) {
     //赋值
     num = 3.5
     //取值
@@ -18,4 +18,25 @@ fun main1() {
 }
 
 fun main2() {
+    testV2("fish", 5, 4.5)
+    testV2(score = 4.5, name = "fish", age = 5)
+}
+
+fun  main3() {
+    testV4("fish", 4)
+}
+
+fun  main4() {
+    testV5("fish", "fish2", "fish3")
+    var myStart = MyStart()
+    myStart.start()
+}
+
+class MyStart {
+    fun start() {
+        fun end() {
+        }
+        //调用
+        end()
+    }
 }

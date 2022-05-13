@@ -1,5 +1,7 @@
 package com.fish.kotlindemo.varclass;
 
+import android.util.Log;
+
 import kotlin.jvm.JvmField;
 import kotlin.jvm.JvmName;
 
@@ -36,5 +38,11 @@ class TestJava {
 
     void test4() {
 
+    }
+
+    void test(String... names) {
+        for (String name : names) {
+            Log.d("fish", name);
+        }
     }
 }

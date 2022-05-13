@@ -95,6 +95,9 @@ var myName: String = ""
             field = value
     }
 
-fun test4() {
+fun test4(name : String):String {
+    return "hello"
+}
 
+fun test5(name: String) {
 }
