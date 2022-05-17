@@ -28,4 +28,13 @@ public class TestJava {
         //传入学生的姓名、年龄，返回学生的分数
         float getScore(String name, int age);
     }
+
+    private void testKotlin() {
+        UpFunKt.testUpFun3(true, new Function2<String, Integer, Float>() {
+            @Override
+            public Float invoke(String s, Integer integer) {
+                return null;
+            }
+        });
+    }
 }
