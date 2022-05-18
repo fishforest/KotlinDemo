@@ -121,7 +121,13 @@ fun testUpFun5(getScore: (String) -> Float) {
     println("student score:$score")
 }
 
-fun testUpFun6(getScore: (String) -> Unit): (Boolean, Int) -> String {
+//无参数
+fun testUpFun6(getScore: () -> Float) {
+    var score = getScore()
+    println("student score:$score")
+}
+
+fun testUpFun7(getScore: (String) -> Unit): (Boolean, Int) -> String {
     //调用函数
     var score = getScore("fish")
     println("student score:$score")
@@ -175,8 +181,17 @@ fun main5(args: Array<String>) {
 
 fun main6(args: Array<String>) {
     ////省略"()"
-    var testReturn = testUpFun6 {
-        println("name:$it")
+    testUpFun6 {
+        println("name")
+        88f
+    }
+}
+
+fun main7(args: Array<String>) {
+    ////省略"()"
+    var testReturn = testUpFun7 {
+        println("name:")
+        77f
     }
     testReturn(true, 5)
 }
