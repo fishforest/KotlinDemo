@@ -15,7 +15,9 @@ class ObjectDeclaration {
 
 object KtSingleton {
     var name: String? = null
+    @JvmField
     var age: Int = 0
+    @JvmStatic
     fun getStuName(): String {
         return "name:$name"
     }

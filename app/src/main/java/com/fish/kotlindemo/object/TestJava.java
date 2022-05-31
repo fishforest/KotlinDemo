@@ -4,6 +4,11 @@ import android.view.View;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import kotlin.Metadata;
+
 public class TestJava {
     //继承接口
     class MyInter implements JavaInterface {
@@ -101,4 +106,12 @@ public class TestJava {
         String name = KtSingleton.getStuName();
         int age = KtSingleton.age;
     }
+
+    public void testKt() {
+        for (int i = 0; i < 100; i++) {
+            KotlinStatic.StudentFactory.buildBean();
+            KotlinStatic1.Companion.buildBean();
+        }
+    }
 }
+
