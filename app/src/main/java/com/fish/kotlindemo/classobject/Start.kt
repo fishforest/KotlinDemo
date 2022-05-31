@@ -15,4 +15,12 @@ fun main(array : Array<String>) {
     //主构造函数声明成员变量
     var conTest1 = ConTest1("fish", 18)
     println("name:${conTest1.name} age:${conTest1.age}")
+
+    //嵌套类构造
+    var inner = KtOuter.Inner()
+    inner.testInner()
+
+    //内部类构造
+    var realInner = KtOuter().RealInner()
+    realInner.testInner()
 }
