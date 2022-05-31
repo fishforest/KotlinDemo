@@ -23,4 +23,7 @@ fun main(array : Array<String>) {
     //内部类构造
     var realInner = KtOuter().RealInner()
     realInner.testInner()
+
+    var testInter = TestInter()
+    testInter.test()
 }
