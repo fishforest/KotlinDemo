@@ -2,6 +2,8 @@ package com.fish.kotlindemo.object;
 
 import android.view.View;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TestJava {
     //继承接口
     class MyInter implements JavaInterface {
@@ -93,5 +95,10 @@ public class TestJava {
 
     public void getStuInfo(EasyJavaInterface easyJavaInterface) {
         String name = easyJavaInterface.getStuName();
+    }
+
+    public void testKtSingleton() {
+        String name = KtSingleton.getStuName();
+        int age = KtSingleton.age;
     }
 }
