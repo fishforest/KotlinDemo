@@ -23,6 +23,7 @@
     <Button
         android:id="@+id/btn_home"
         android:text="点击测试"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/text_home"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
