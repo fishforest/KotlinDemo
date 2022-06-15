@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.fish.kotlindemo.coroutineraw.startLaunch
 import com.fish.kotlindemo.coroutinestory.JavaStudent
 import com.fish.kotlindemo.coroutinestory.StudentCoroutine
 import com.fish.kotlindemo.coroutinestory.StudentInfo
@@ -38,11 +39,11 @@ class MainActivity : AppCompatActivity() {
             var javaStudent = JavaStudent()
 //            var studentInfo = javaStudent.getWithoutThread(999)
 //            Toast.makeText(this, "学生姓名：${studentInfo?.name ?:"空"}", Toast.LENGTH_LONG).show()
-            javaStudent.getStuInfoAsync(999) {
-                runOnUiThread {
-                    Toast.makeText(this, "学生姓名：${it?.name ?: "空"}", Toast.LENGTH_LONG).show()
-                }
-            }
+//            javaStudent.getStuInfoAsync(999) {
+//                runOnUiThread {
+//                    Toast.makeText(this, "学生姓名：${it?.name ?: "空"}", Toast.LENGTH_LONG).show()
+//                }
+//            }
 
             javaStudent.getTeachInfoAsync(999, object : JavaStudent.Callback {
                 override fun onCallback(teacherInfo: TeacherInfo?) {
@@ -62,6 +63,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnKotlin.setOnClickListener {
             var student = StudentCoroutine()
             student.getTeachInfo(this@MainActivity, 999)
+        }
+
+        binding.btnRaw.setOnClickListener {
+            startLaunch()
         }
     }
 }

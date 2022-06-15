@@ -1,19 +1,5 @@
 package com.fish.kotlindemo.coroutine;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import kotlin.ResultKt;
-import kotlin.Unit;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.intrinsics.IntrinsicsKt;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
-import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.BuildersKt;
-import kotlinx.coroutines.Dispatchers;
-
 class TestJava {
     public static void main(String args[]) {
         TestJava testJava = new TestJava();
@@ -38,9 +24,10 @@ class TestJava {
 
     private void stt() {
         TestJava tt;
-        lable:{
-        int a = 5;
-        tt = new TestJava();
+        lable:
+        {
+            int a = 5;
+            tt = new TestJava();
         }
         System.out.println("before");
         tt.test();
