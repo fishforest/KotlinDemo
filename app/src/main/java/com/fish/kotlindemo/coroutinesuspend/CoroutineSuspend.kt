@@ -5,9 +5,6 @@ import com.fish.kotlindemo.coroutinestory.StudentInfo
 import kotlinx.coroutines.*
 import kotlin.concurrent.thread
 import kotlin.coroutines.*
-import kotlin.coroutines.intrinsics.intercepted
-import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
-
 class CoroutineSuspend {
 }
 
