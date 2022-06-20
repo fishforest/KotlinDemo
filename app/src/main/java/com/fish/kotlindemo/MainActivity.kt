@@ -1,6 +1,7 @@
 package com.fish.kotlindemo
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,11 @@ import com.fish.kotlindemo.coroutinestory.JavaStudent
 import com.fish.kotlindemo.coroutinestory.StudentCoroutine
 import com.fish.kotlindemo.coroutinestory.StudentInfo
 import com.fish.kotlindemo.coroutinestory.TeacherInfo
+import com.fish.kotlindemo.coroutinesuspend.getStuInfo
 import com.fish.kotlindemo.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -67,6 +72,20 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnRaw.setOnClickListener {
             startLaunch()
+        }
+
+        //点击UI
+        binding.btnDelay.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Main) {
+                //在主线程执行协程
+                Log.d("fish", "before suspend thread:${Thread.currentThread()}")
+                //执行挂起函数
+                getStuInfo()
+            }
+            binding.btnDelay.postDelayed({
+                //延迟2s在主线程执行打印
+                Log.d("fish", "post thread:${Thread.currentThread()}")
+            }, 2000)
         }
     }
 }

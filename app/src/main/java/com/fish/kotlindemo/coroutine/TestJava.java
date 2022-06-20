@@ -1,5 +1,7 @@
 package com.fish.kotlindemo.coroutine;
 
+import com.fish.kotlindemo.coroutinesuspend.CoroutineSuspendKt;
+
 class TestJava {
     public static void main(String args[]) {
         TestJava testJava = new TestJava();
@@ -33,5 +35,4 @@ class TestJava {
         tt.test();
         System.out.println("after");
     }
-
 }
