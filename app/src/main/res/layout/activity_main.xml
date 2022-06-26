@@ -32,11 +32,22 @@
 
 
     <Button
-        android:id="@+id/btn_delay"
+        android:id="@+id/btn_dispatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="100dp"
+        android:text="测试分发"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_kotlin"></Button>
+
+    <Button
+        android:id="@+id/btn_delay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="184dp"
         android:text="测试delay"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"

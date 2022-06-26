@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.fish.kotlindemo.coroutinedispatch.CoroutineDispatch
 import com.fish.kotlindemo.coroutineraw.startLaunch
 import com.fish.kotlindemo.coroutinestory.JavaStudent
 import com.fish.kotlindemo.coroutinestory.StudentCoroutine
@@ -19,6 +20,7 @@ import com.fish.kotlindemo.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -86,6 +88,14 @@ class MainActivity : AppCompatActivity() {
                 //延迟2s在主线程执行打印
                 Log.d("fish", "post thread:${Thread.currentThread()}")
             }, 2000)
+        }
+
+        //分发
+        binding.btnDispatch.setOnClickListener {
+            var dispatch = CoroutineDispatch(binding.root.context)
+//            dispatch.showStuInfo()
+//            dispatch.showStuInfoV2()
+            dispatch.launch1()
         }
     }
 }
