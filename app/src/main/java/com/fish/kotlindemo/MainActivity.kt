@@ -95,7 +95,8 @@ class MainActivity : AppCompatActivity() {
             var dispatch = CoroutineDispatch(binding.root.context)
 //            dispatch.showStuInfo()
 //            dispatch.showStuInfoV2()
-            dispatch.launch1()
+//            dispatch.launch1()
+            dispatch.launch2()
         }
     }
 }

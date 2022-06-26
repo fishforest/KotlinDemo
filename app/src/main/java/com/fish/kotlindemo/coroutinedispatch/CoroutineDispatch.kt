@@ -78,11 +78,25 @@ class CoroutineDispatch(val context: Context) {
 
     fun launch2() {
         GlobalScope.launch(Dispatchers.Main) {
+
             println("我在主线程执行")
+
             withContext(Dispatchers.IO) {
                 println("我在子线程执行")
             }
+
             println("我在哪个线程执行？")//③
+        }
+    }
+
+    fun launch3() {
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
+                println("我在哪个线程运行")
+                delay(2000)
+                println("delay 后我在哪个线程运行")
+            }
+            println("我又在哪个线程运行")
         }
     }
 }
