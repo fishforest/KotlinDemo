@@ -16,6 +16,7 @@ import com.fish.kotlindemo.coroutinestory.StudentCoroutine
 import com.fish.kotlindemo.coroutinestory.StudentInfo
 import com.fish.kotlindemo.coroutinestory.TeacherInfo
 import com.fish.kotlindemo.coroutinesuspend.getStuInfo
+import com.fish.kotlindemo.coroutinethreadpool.Pool
 import com.fish.kotlindemo.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -97,6 +98,9 @@ class MainActivity : AppCompatActivity() {
 //            dispatch.showStuInfoV2()
 //            dispatch.launch1()
             dispatch.launch2()
+
+            var pool = Pool(binding.root.context)
+            pool.showStuName()
         }
     }
 }
