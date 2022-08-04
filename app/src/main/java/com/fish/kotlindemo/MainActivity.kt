@@ -3,21 +3,19 @@ package com.fish.kotlindemo
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.fish.kotlindemo.coroutinedispatch.CoroutineDispatch
 import com.fish.kotlindemo.coroutineraw.startLaunch
 import com.fish.kotlindemo.coroutinestory.JavaStudent
 import com.fish.kotlindemo.coroutinestory.StudentCoroutine
 import com.fish.kotlindemo.coroutinestory.StudentInfo
 import com.fish.kotlindemo.coroutinestory.TeacherInfo
 import com.fish.kotlindemo.coroutinesuspend.getStuInfo
-import com.fish.kotlindemo.coroutinethreadpool.Pool
 import com.fish.kotlindemo.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -93,14 +91,28 @@ class MainActivity : AppCompatActivity() {
 
         //分发
         binding.btnDispatch.setOnClickListener {
-            var dispatch = CoroutineDispatch(binding.root.context)
-//            dispatch.showStuInfo()
-//            dispatch.showStuInfoV2()
-//            dispatch.launch1()
-            dispatch.launch2()
+//            var dispatch = CoroutineDispatch(binding.root.context)
+////            dispatch.showStuInfo()
+////            dispatch.showStuInfoV2()
+////            dispatch.launch1()
+//            dispatch.launch2()
+//
+//            var pool = Pool(binding.root.context)
+//            pool.showStuName()
 
-            var pool = Pool(binding.root.context)
-            pool.showStuName()
+            GlobalScope.launch(Dispatchers.Main) {
+                Toast.makeText(binding.root.context,
+                    "老师姓名2",
+                    Toast.LENGTH_LONG).show()
+
+                val throwable = Throwable("just test")
+                var thread = Thread.currentThread()
+                thread.uncaughtExceptionHandler.uncaughtException(thread, throwable)
+
+                Toast.makeText(binding.root.context,
+                    "老师姓名3",
+                    Toast.LENGTH_LONG).show()
+            }
         }
     }
 }
