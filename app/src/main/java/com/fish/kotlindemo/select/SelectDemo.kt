@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.selects.select
+import kotlinx.coroutines.selects.selectUnbiased
 
 class SelectDemo {
 
@@ -110,13 +111,13 @@ class SelectDemo {
             //通过select 监听zxing、zbar 结果返回
             var result = select<String> {
                 //监听zxing
-                deferredZxing.onAwait {value->
+                deferredZxing.onAwait { value ->
                     //value 为deferredZxing 识别的结果
                     "zxing result $value"
                 }
 
                 //监听zbar
-                deferredZbar.onAwait { value->
+                deferredZbar.onAwait { value ->
                     "zbar result $value"
                 }
             }
@@ -145,14 +146,64 @@ class SelectDemo {
             var result = select<String> {
                 //监听是否有数据发送过来
                 receiveChannelZxing.onReceive {
-                    value->"zxing result $value"
+
+                        value ->
+                    "zxing result $value"
+
                 }
 
                 receiveChannelZbar.onReceive {
-                        value->"zbar result $value"
+
+                        value ->
+                    "zbar result $value"
+
                 }
             }
 
+            println("result from $result useTime:${System.currentTimeMillis() - starTime}")
+        }
+    }
+
+    operator fun invoke(block: (Int) -> String): String {
+        return block(3)
+    }
+
+    fun testSelect5() {
+        runBlocking {
+            var starTime = System.currentTimeMillis()
+            var receiveChannelZxing = produce {
+                //发送数据
+                send("I'm fish")
+            }
+
+            //确保channel 数据已经send
+            delay(1000)
+            var result = select<String> {
+                //监听是否有数据发送过来
+                receiveChannelZxing.onReceive { value ->
+                    "zxing result $value"
+                }
+            }
+            println("result from $result useTime:${System.currentTimeMillis() - starTime}")
+        }
+    }
+
+    fun testSelect6() {
+        runBlocking {
+            var starTime = System.currentTimeMillis()
+            var receiveChannelZxing = produce {
+                //发送数据
+                send("I'm fish")
+            }
+
+            //确保channel 数据已经send
+            delay(1000)
+            var result = selectUnbiased<String> {
+                //监听是否有数据发送过来
+                receiveChannelZxing.onReceive { value ->
+                    "zxing result $value"
+                }
+            }
             println("result from $result useTime:${System.currentTimeMillis() - starTime}")
         }
     }
@@ -161,5 +212,14 @@ class SelectDemo {
 fun main(args: Array<String>) {
     var selectDemo = SelectDemo()
     selectDemo.testSelect4()
+//    var result = selectDemo { age ->
+//        when (age) {
+//            3 -> "I'm fish3"
+//            4 -> "I'm fish4"
+//            else -> "error"
+//        }
+//    }
+//    println("result：$result")
+
     Thread.sleep(100000)
 }
