@@ -1,9 +1,12 @@
 package com.fish.kotlindemo
 
+import android.content.ComponentName
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -15,6 +18,8 @@ import com.fish.kotlindemo.coroutinestory.StudentInfo
 import com.fish.kotlindemo.coroutinestory.TeacherInfo
 import com.fish.kotlindemo.coroutinesuspend.getStuInfo
 import com.fish.kotlindemo.databinding.ActivityMainBinding
+import com.fish.kotlindemo.repository.MyRepo
+import com.fish.kotlindemo.vm.MyViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -113,6 +118,11 @@ class MainActivity : AppCompatActivity() {
                     "老师姓名3",
                     Toast.LENGTH_LONG).show()
             }
+        }
+
+        binding.btnMvi.setOnClickListener {
+            val jump = Intent(this@MainActivity, SecondActivity::class.java)
+            startActivity(jump)
         }
     }
 }
