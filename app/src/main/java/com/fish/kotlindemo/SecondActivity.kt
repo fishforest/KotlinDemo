@@ -1,67 +1,76 @@
 package com.fish.kotlindemo
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.fish.kotlindemo.databinding.ActivityMainBinding
-import com.fish.kotlindemo.repository.MyRepo
-import com.fish.kotlindemo.service.MyService
-import com.fish.kotlindemo.vm.MyViewModel
+import androidx.lifecycle.repeatOnLifecycle
+import com.fish.kotlindemo.databinding.ActivitySecondBinding
+import com.fish.kotlindemo.lifecycleAndCoroutine.MyFlow
 import com.fish.kotlindemo.vm.MyViewModel2
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.collect
+import java.lang.Exception
 
 class SecondActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    val data = "fish"
+    private lateinit var binding: ActivitySecondBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val vm = ViewModelProvider(this).get(MyViewModel::class.java)
-
-        vm.getInfo{
-            Toast.makeText(this@SecondActivity, it, Toast.LENGTH_SHORT).show()
-        }
-
-        vm.livedata.observe(this) {value->
-            Toast.makeText(this@SecondActivity, value, Toast.LENGTH_SHORT).show()
-        }
-
-        lifecycleScope.launchWhenResumed {
-            delay(5000)
-            println("1====$data")
-        }
-
-        MainScope().launch {
-            delay(5000)
-            println("2====$data")
-
-        }
-
-        val scope = CoroutineScope(SupervisorJob() + CoroutineName("shit"))
-        scope.launch {
-            println("shit")
-        }
-
-        val vm2 = ViewModelProvider(this)[MyViewModel2::class.java]
-        vm2.test()
-
-        startService(Intent(this@SecondActivity, MyService::class.java))
-
-        lifecycleScope.launchWhenResumed {
-            println("hello world")
-            MyRepo().getFlow().collectLatest {
-                println("$it")
+        binding.btnStartLifecycle.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
+                try {
+                    delay(5000)
+                } catch (e : Exception) {
+                    println(e.localizedMessage)
+                }
+                println("hello world")
             }
+
+//            val vm = MyViewModel2()
+//            vm.test()
+//            vm.livedata3.observe(this) {
+//                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+//            }
+//            vm.update()
+
         }
+
+        lifecycleScope.launchWhenResumed {
+            MyFlow().flow.collect {
+                println("collect when $it")
+            }
+
+
+//            println("fuck...")
+//            lifecycleScope.launch(Dispatchers.IO) {
+//                var count = 0
+//                while (true) {
+//                    delay(1000)
+//                    println("collect ${count++}")
+//                }
+//            }
+//            println("fuck2...")
+
+        }
+//        println("111")
+//        lifecycleScope.launch(Dispatchers.Main) {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                MyFlow().flow.collect {
+//                    println("collect repeat $it")
+//                }
+//                MyFlow().flow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+//            }
+//            println("222")
+//
+//        }
+
+
     }
 
     override fun onStart() {
