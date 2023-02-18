@@ -18,6 +18,7 @@ import com.fish.kotlindemo.coroutinestory.StudentInfo
 import com.fish.kotlindemo.coroutinestory.TeacherInfo
 import com.fish.kotlindemo.coroutinesuspend.getStuInfo
 import com.fish.kotlindemo.databinding.ActivityMainBinding
+import com.fish.kotlindemo.lifecycleAndCoroutine.ThirdActivity
 import com.fish.kotlindemo.repository.MyRepo
 import com.fish.kotlindemo.vm.MyViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -122,6 +123,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnMvi.setOnClickListener {
             val jump = Intent(this@MainActivity, SecondActivity::class.java)
+            startActivity(jump)
+        }
+
+        binding.btnLifeCoroutine.setOnClickListener {
+            val jump = Intent(this@MainActivity, ThirdActivity::class.java)
             startActivity(jump)
         }
     }

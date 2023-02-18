@@ -24,6 +24,9 @@
         <activity android:name=".SecondActivity"/>
 
         <service android:name=".service.MyService"></service>
+
+        <activity android:name=".lifecycleAndCoroutine.ThirdActivity"/>
+
     </application>
 
 </manifest>

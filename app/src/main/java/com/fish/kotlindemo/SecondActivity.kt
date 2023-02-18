@@ -3,6 +3,7 @@ package com.fish.kotlindemo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -57,18 +58,23 @@ class SecondActivity : AppCompatActivity() {
 //            }
 //            println("fuck2...")
 
+
         }
-//        println("111")
-//        lifecycleScope.launch(Dispatchers.Main) {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                MyFlow().flow.collect {
-//                    println("collect repeat $it")
-//                }
-//                MyFlow().flow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-//            }
-//            println("222")
-//
-//        }
+
+//        val dialogFragment = DialogFragment()
+//        dialogFragment.show(supportFragmentManager, "hello")
+
+        println("111")
+        lifecycleScope.launch(Dispatchers.Main) {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                MyFlow().flow.collect {
+                    println("collect repeat $it")
+                }
+                MyFlow().flow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            }
+            println("222")
+
+        }
 
 
     }
@@ -84,4 +90,18 @@ class SecondActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
+
+    object Fuck:JJ()
+}
+
+open class JJ {
+    fun lishi(){}
+}
+
+sealed class MainState {
+
+    object Idle : JJ()
+    object Loading : MainState()
+    data class Users(val user: List<String>) : MainState()
+    data class Error(val error: String) : MainState()
 }

@@ -102,4 +102,16 @@
         android:layout_height="wrap_content">
     </Button>
 
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/btn_mvi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textAllCaps="false"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_life_coroutine"
+        android:text="协程生命周期测试"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Button>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
