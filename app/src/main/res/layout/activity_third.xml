@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="384dp"
-        android:text="ViewModel关联生命周期"
+        android:text="ViewModel调用协程"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"></Button>
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="108dp"
-        android:text="ViewModel关联生命周期"
+        android:text="launch Whenx使用"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"></Button>
@@ -103,7 +103,30 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="158dp"
-        android:text="ViewModel关联生命周期"
+        android:text="repeat 的使用"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <Button
+        android:id="@+id/btn_start_lifecycle_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="208dp"
+        android:text="Application的全局协程"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+
+    <Button
+        android:id="@+id/btn_start_lifecycle_livedata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="258dp"
+        android:text="LiveData"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"></Button>
