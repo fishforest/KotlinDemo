@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ProcessLifecycleOwner
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import com.fish.kotlindemo.app.scope
 import com.fish.kotlindemo.databinding.ActivityThirdBinding
 import com.fish.kotlindemo.vm.MyViewModel
 import com.fish.kotlindemo.vm.MyViewModel2
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlin.concurrent.thread
 
 class ThirdActivity : AppCompatActivity() {
@@ -105,9 +103,9 @@ class ThirdActivity : AppCompatActivity() {
 
         //测试flow使用when
         binding.btnStartLifecycleFlowWhen.setOnClickListener {
-            lifecycleScope.launch {
+            lifecycleScope.launchWhenResumed {
                 MyFlow().flow.collect {
-                    println("collect $it")
+                    println("collect when $it")
                 }
             }
         }
@@ -117,9 +115,15 @@ class ThirdActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.RESUMED) {
                     MyFlow().flow.collect {
-                        println("flow repeat x coming $it")
+                        println("collect repeat $it")
                     }
                 }
+                println("repeatOnLifecycle over")
+
+                MyFlow().flow.flowWithLifecycle(this@ThirdActivity.lifecycle, Lifecycle.State.RESUMED)
+                    .collectLatest {
+                        println("collect repeat $it")
+                    }
             }
         }
 
