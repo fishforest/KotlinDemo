@@ -153,5 +153,21 @@ class ThirdActivity : AppCompatActivity() {
             }
             vm.getInfo()
         }
+
+        binding.btnStartThread.setOnClickListener {
+//            repeat(20) {
+//                GlobalScope.launch(Dispatchers.IO) {
+//                    println("io...$it")
+//                    Thread.sleep(36000000)
+//                }
+//            }
+
+            repeat(10) {
+                GlobalScope.launch(Dispatchers.Default) {
+                    println("default...$it")
+                    Thread.sleep(36000000)
+                }
+            }
+        }
     }
 }
