@@ -1,0 +1,5 @@
+
+ext {
+    user='lishi'
+    age = 6
+}

@@ -95,4 +95,11 @@ public class JavaStudent {
             }
         });
     }
+
+    private void startNewThread() {
+        new Thread(()->{
+            //线程体
+            //我在子线程执行...
+        }).start();
+    }
 }

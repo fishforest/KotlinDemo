@@ -18,6 +18,11 @@ class MyApp:Application() {
         super.onCreate()
         MyRepo().bind(this)
 
+//        System.setProperty("kotlinx.coroutines.scheduler.core.pool.size", "20")
+//
+//        System.setProperty("kotlinx.coroutines.io.parallelism", "40")
+
+
         ProcessLifecycleOwner.get().lifecycleScope.launch {
             delay(1000)
         }

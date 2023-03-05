@@ -7,13 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import com.fish.kotlindemo.app.scope
 import com.fish.kotlindemo.databinding.ActivityThirdBinding
-import com.fish.kotlindemo.vm.MyViewModel
-import com.fish.kotlindemo.vm.MyViewModel2
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlin.concurrent.thread
 
+fun yellow() {
+
+}
+const val jj = 0
+val fuck = 0
 class ThirdActivity : AppCompatActivity() {
     lateinit var binding: ActivityThirdBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -154,17 +156,41 @@ class ThirdActivity : AppCompatActivity() {
             vm.getInfo()
         }
 
-        binding.btnStartThread.setOnClickListener {
-//            repeat(20) {
-//                GlobalScope.launch(Dispatchers.IO) {
-//                    println("io...$it")
-//                    Thread.sleep(36000000)
-//                }
-//            }
-
+        var multiIoCount = 1
+        binding.btnStartThreadMultiIo.setOnClickListener {
             repeat(10) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    println("io multi...${multiIoCount++}  ${Thread.currentThread().name}")
+                    Thread.sleep(10000)
+                }
+            }
+        }
+
+        var singleIoCount = 1
+        binding.btnStartThreadSingleIo.setOnClickListener {
+            repeat(1) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    println("io single...${singleIoCount++}  ${Thread.currentThread().name}")
+                    Thread.sleep(10000)
+                }
+            }
+        }
+
+        var multiCpuCount = 1
+        binding.btnStartThreadMultiCpu.setOnClickListener {
+            repeat(8) {
                 GlobalScope.launch(Dispatchers.Default) {
-                    println("default...$it")
+                    println("cpu multi...${multiCpuCount++}  ${Thread.currentThread().name}")
+                    Thread.sleep(36000000)
+                }
+            }
+        }
+
+        var singleCpuCount = 1
+        binding.btnStartThreadSingleCpu.setOnClickListener {
+            repeat(1) {
+                GlobalScope.launch(Dispatchers.Default) {
+                    println("cpu single...${singleCpuCount++}  ${Thread.currentThread().name}")
                     Thread.sleep(36000000)
                 }
             }

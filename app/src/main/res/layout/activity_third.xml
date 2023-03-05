@@ -133,12 +133,46 @@
 
 
     <Button
-        android:id="@+id/btn_start_thread"
+        android:id="@+id/btn_start_thread_multi_io"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="308dp"
-        android:text="线程测试"
+        android:text="开启多个io线程"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <Button
+        android:id="@+id/btn_start_thread_single_io"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="358dp"
+        android:text="开启单个io线程"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+
+    <Button
+        android:id="@+id/btn_start_thread_multi_cpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="408dp"
+        android:text="开启多个cpu线程"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <Button
+        android:id="@+id/btn_start_thread_single_cpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="458dp"
+        android:text="开启单个cpu线程"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"></Button>
