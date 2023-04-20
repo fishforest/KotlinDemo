@@ -88,8 +88,8 @@ class MutableSharedFlowDemo {
             GlobalScope.launch {
                 //接收数据(消费者)
                 flow.collect {
-                    delay(2000)
                     println("collect: $it")
+                    delay(2000)
                 }
             }
 
@@ -97,10 +97,13 @@ class MutableSharedFlowDemo {
             delay(200)//保证消费者先执行
             println("emit 1 ${System.currentTimeMillis()}")
             flow.emit("hello world1")
+            delay(100)
             println("emit 2 ${System.currentTimeMillis()}")
             flow.emit("hello world2")
+            delay(100)
             println("emit 3 ${System.currentTimeMillis()}")
             flow.emit("hello world3")
+            delay(100)
             println("emit 4 ${System.currentTimeMillis()}")
             flow.emit("hello world4")
         }
@@ -208,6 +211,6 @@ class MutableSharedFlowDemo {
 
 fun main(args: Array<String>) {
     var demo = MutableSharedFlowDemo()
-    demo.test10()
+    demo.test5()
     Thread.sleep(1000000)
 }
