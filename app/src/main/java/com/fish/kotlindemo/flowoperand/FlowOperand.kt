@@ -1,20 +1,18 @@
 package com.fish.kotlindemo.flowoperand
 
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.flow.internal.ChannelFlow
-import kotlinx.coroutines.flow.internal.FusibleFlow
 import kotlin.concurrent.thread
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
 
 class FlowOperand() {
     fun test0() {
         runBlocking {
             //构造flow
             val flow = flow {
-                //下游
+                //上游
                 emit("hello world ${Thread.currentThread()}")
             }
             //收集flow
