@@ -18,6 +18,7 @@ import com.fish.kotlindemo.coroutinestory.StudentInfo
 import com.fish.kotlindemo.coroutinestory.TeacherInfo
 import com.fish.kotlindemo.coroutinesuspend.getStuInfo
 import com.fish.kotlindemo.databinding.ActivityMainBinding
+import com.fish.kotlindemo.flowoperand.LiveDataDemo
 import com.fish.kotlindemo.lifecycleAndCoroutine.ThirdActivity
 import com.fish.kotlindemo.repository.MyRepo
 import com.fish.kotlindemo.vm.MyViewModel
@@ -79,6 +80,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnRaw.setOnClickListener {
             startLaunch()
+            val liveDataDemo = LiveDataDemo()
+            liveDataDemo.test0()
         }
 
         //点击UI
