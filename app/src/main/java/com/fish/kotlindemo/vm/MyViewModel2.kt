@@ -1,6 +1,7 @@
 package com.fish.kotlindemo.vm
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.launch
@@ -42,5 +43,17 @@ class MyViewModel2 : ViewModel() {
 
     fun update() {
         livedata2.value = "fuck"
+    }
+
+    fun testLife() {
+        viewModelScope.launch {
+            println("fragment continue1")
+            delay(5000)
+            println("fragment continue2")
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }

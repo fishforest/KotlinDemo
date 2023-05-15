@@ -1,5 +1,6 @@
 package com.fish.kotlindemo.lifecycleAndCoroutine
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import com.fish.kotlindemo.app.scope
 import com.fish.kotlindemo.databinding.ActivityThirdBinding
+import com.fish.kotlindemo.fragment.dialogFragment.FishFragmentActivity
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlin.concurrent.thread
@@ -101,6 +103,8 @@ class ThirdActivity : AppCompatActivity() {
                 val viewModel = MyVM()
                 viewModel.getInfo()
             }
+
+            startActivity(Intent(this@ThirdActivity, FishFragmentActivity::class.java))
         }
 
         //测试flow使用when

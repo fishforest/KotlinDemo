@@ -27,6 +27,8 @@
 
         <activity android:name=".lifecycleAndCoroutine.ThirdActivity"/>
 
+        <activity android:name=".fragment.dialogFragment.FishFragmentActivity"/>
+
     </application>
 
 </manifest>
