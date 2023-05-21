@@ -13,9 +13,6 @@ import androidx.lifecycle.ViewModelStore
 import com.fish.kotlindemo.vm.MyViewModel2
 
 class MyDialogFragment : DialogFragment() {
-
-    private val vm by viewModels<MyViewModel2>()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

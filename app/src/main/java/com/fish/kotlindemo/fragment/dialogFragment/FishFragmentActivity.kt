@@ -1,5 +1,7 @@
 package com.fish.kotlindemo.fragment.dialogFragment
 
+import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,25 +10,32 @@ import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import com.fish.kotlindemo.R
 import com.fish.kotlindemo.vm.MyViewModel2
 
+var count = 1
 class FishFragmentActivity : AppCompatActivity() {
-
-    private val fragment = FishPureFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val linearLayout = LinearLayout(this)
-        linearLayout.id = View.generateViewId()
-        linearLayout.orientation = LinearLayout.VERTICAL
-        val btn = Button(this)
-        btn.text = "remove"
-        btn.setOnClickListener {
-            supportFragmentManager.beginTransaction().remove(fragment).commitNow()
+        savedInstanceState?.let {
+            it.getBundle("androidx.lifecycle.BundleSavedStateRegistry.key")?.remove("android:support:fragments");
         }
-        linearLayout.addView(btn)
-        setContentView(linearLayout)
+        setContentView(R.layout.layout_fragment )
+        val fragment = FishPureFragment()
+        fragment.arguments = Bundle().apply {
+            putString("hello", "fragment:${count++}")
+        }
+//        supportFragmentManager.beginTransaction().replace(R.id.root, fragment).commitNow()
 
-        supportFragmentManager.beginTransaction().add(linearLayout.id, fragment).commitNow()
+        MyDialogFragment().show(supportFragmentManager, "dd")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
