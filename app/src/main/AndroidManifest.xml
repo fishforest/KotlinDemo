@@ -29,6 +29,8 @@
 
         <activity android:name=".fragment.dialogFragment.FishFragmentActivity"/>
 
+        <activity android:name=".datastore.DataStoreActivity"/>
+
     </application>
 
 </manifest>
