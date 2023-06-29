@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+//指定生成类的包名
+option java_package = "com.fish.kotlindemo.test";
+option java_multiple_files = true;
+
+//message 可以类比class
+//编译后，自动生成对应的class
+message LoginInfo {
+  //定义字段, 1,2表示字段顺序而非具体值
+  int64 userId = 1;
+  string userName = 2;
+}
